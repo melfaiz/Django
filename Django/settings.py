@@ -25,7 +25,7 @@ SECRET_KEY = '%-%1$=i-*ib^(palpykb1m4hkka6roc5z=79*(7a)byjs$ifx#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['18.224.196.110','localhost']
 
 
 # Application definition
