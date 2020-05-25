@@ -15,8 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from word2vec.views import word2vecView
+
 
 urlpatterns = [
-    path('word2vec/', include('word2vec.urls')),
+    path('word2vec/', word2vecView),
     path('admin/', admin.site.urls),
 ]
