@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Clubs ranking
+{% endblock title %}
+
+
+{% comment %} labels: [{% for item in qs %}' {{item.name}} ',{% endfor %}], {% endcomment %}
+{% block scripts %}
+
+<script>
+        var datapoints = [{% for item in qs %}' {{item.x}} ',{% endfor %}];
+
+        var x_axis = [];
+        for (var i = 0; i < datapoints.length; i++) {
+            x_axis.push(i);
+        }
+
+		var config = {
+			type: 'line',
+			data: {
+				labels: x_axis,
+				datasets: [{
+					label: 'Cubic interpolation',
+					data: datapoints,
+					borderColor: 'rgb(28, 96, 156)',
+					backgroundColor: 'rgba(0, 0, 0, 0)',
+					fill: false,
+					cubicInterpolationMode: 'monotone'
+				},
+                {
+					label: 'Linear',
+					data: datapoints,
+					borderColor: 'rgb(21, 240, 139)',
+					backgroundColor: 'rgba(0, 0, 0, 0)',
+					fill: false,
+                    lineTension: 0
+					
+				}],
+                
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: 'Gaussian interpolation'
+				},
+				tooltips: {
+					mode: 'index'
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Value'
+						},
+						ticks: {
+							suggestedMin: -10,
+							suggestedMax: 10,
+						}
+					}]
+				}
+			}
+		};
+
+		window.onload = function() {
+			var ctx = document.getElementById('myChart').getContext('2d');
+			window.myLine = new Chart(ctx, config);
+		};
+
+
+
+</script>
+
+
+{% endblock scripts %}
+
+
+{% block content %}
+
+    <canvas id="myChart" width="400" height="200"></canvas>
+
+{% endblock content %}

@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from word2vec.views import word2vecView
+from gaussian.views import ChartView
 
 
 urlpatterns = [
-    path('word2vec/', word2vecView),
+    path('', ChartView.as_view(), name='home'),
     path('admin/', admin.site.urls),
 ]
