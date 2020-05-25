@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from gaussian.views import ChartView
-
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
     path('', ChartView.as_view(), name='home'),
     path('admin/', admin.site.urls),
 ]
+
+
+urlpatterns += staticfiles_urlpatterns()

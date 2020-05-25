@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css" integrity="sha256-aa0xaJgmK/X74WM224KMQeNQC2xYKwlAt08oZqjeF0E=" crossorigin="anonymous" />
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="static/utils.js"></script>
 
     <title>
     {% block title %}
@@ -20,11 +21,13 @@
   </head>
   <body>
 
-  {% block scripts %}
-  {% endblock scripts %}
+
 
   {% block content %}
   {% endblock content %}
+
+    {% block scripts %}
+  {% endblock scripts %}
    
   </body>
 </html>
