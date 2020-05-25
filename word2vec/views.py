@@ -1,5 +1,6 @@
 from django.http import HttpResponse
+from django.shortcuts import render
 
 
 def word2vecView(request):
-    return HttpResponse("Hello, world. You're at the word2vec app index.")
+    return render(request, 'word2vec.html')
