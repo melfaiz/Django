@@ -7,6 +7,8 @@ class ChartForm(forms.ModelForm):
        model = Point
        fields=['x']
        widgets = {
-           'x': forms.NumberInput(attrs={ 'type':'number' , 'step' : '0.01', 'min': '0', 'class': 'form-control', 'id': 'inputField', 'placeholder':'Enter the point value'}),
+            'x': forms.NumberInput(attrs={ 'type':'number' , 'step' : '0.01', 'min': '0', 'class': 'form-control', 'id': 'inputField', 'placeholder':'Enter the x value'}),
+            'y': forms.NumberInput(attrs={ 'type':'number' , 'step' : '0.01', 'min': '0', 'class': 'form-control', 'id': 'inputField', 'placeholder':'Enter the y value'}),
+
     }
 

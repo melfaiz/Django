@@ -64,16 +64,18 @@ def predict(request):
 
     x = np.arange(0, len(y), 1).reshape((-1, 1))
 
-    model = LinearRegression()
+    
 
     kernel = C(1.0, (1e-3, 1e3)) * RBF(10, (1e-2, 1e2))
-    gp = GaussianProcessRegressor(kernel=kernel, n_restarts_optimizer=9)
-    gp.fit(x, y)
+    gpModel = GaussianProcessRegressor(kernel=kernel, n_restarts_optimizer=9)
+    gpModel.fit(x, y)
 
-    model.fit(x, y)
+    linearModel = LinearRegression()
+    linearModel.fit(x, y)
+
 
     x_pred = x[-1]+1
-    y_pred = model.predict(x_pred.reshape(-1, 1) )
+    y_pred = linearModel.predict(x_pred.reshape(-1, 1) )
 
     print("Prediction for",x_pred,"is",y_pred)
 
