@@ -7,15 +7,55 @@
 
 {% block content %}
 
-	<div style="width:75%;">
-		<canvas id="canvas"></canvas>
-	</div>
 
 
-				<input id="inputField" type="integer">
-				<button id="addData">add point</button>
-				<button id="randomizeData">Randomize Data</button>
+
+
+  <div class="jumbotron">
+
+{% if messages %}
+
+    {% for message in messages %}
 		
+
+		<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+  			{{ message }}
+  			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+  			  <span aria-hidden="true">&times;</span>
+  			</button>
+		</div>
+
+    {% endfor %}
+
+
+{% endif %}
+
+
+			<canvas id="canvas"></canvas>
+
+			
+				<form method="POST" id="chartForm">{% csrf_token %}
+
+					<div class="input-group">
+
+						{{form.x}}
+					
+						<div class="input-group-append" id="button-addon4">
+							<button class="btn btn-outline-secondary" type="submit">Add point</button>
+							<a href="{% url 'predict' %}" type="button" class="btn btn-outline-secondary">Predict (linear)</a>
+							<a href="{% url 'delete' %}" type="button" class="btn btn-outline-secondary">Delete</a>
+						</div>
+
+					</div>
+
+				<form>
+		
+					
+
+  </div>
+
+
+
 
 
 {% endblock content %}
@@ -28,8 +68,8 @@
 
 
 
-		var datapoints = [{% for item in qs %} '{{item.x}}', {% endfor %}]
-		var axis = range(0, {{ qs.count }},1)
+		var datapoints = [{% for item in query %} '{{item.x}}', {% endfor %}]
+		var axis = range(0, {{ query.count }},1)
 
 		var config = {
 			type: 'line',
@@ -88,16 +128,6 @@
 			window.myLine.update();
 		});
 
-		document.getElementById('addData').addEventListener('click', function() {
-			var inputVal = document.getElementById("inputField").value;
-			
-			datapoints.push(inputVal)
-
-			axis.push( axis[axis.length - 1] + 1 )
-
-
-			window.myLine.update();
-		});
 
 
 
