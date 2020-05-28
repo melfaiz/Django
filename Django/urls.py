@@ -15,13 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
-from gaussian import views
-
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from . import views
+
 urlpatterns = [
-    path('', include('gaussian.urls')),
-    path('admin/', admin.site.urls),
+    path('chart/', include('gaussian.urls')),
+    path('embeddings/', include('embeddings.urls')),
+    # path('classifier', include('classifier.urls')),
+    path('admin', admin.site.urls),
+    path('', views.index),
 ]
 
 

@@ -33,7 +33,7 @@ def ChartView(request):
         if form.is_valid():
             form.save()
             messages.success(request, 'Point successfully added')
-            return http.HttpResponseRedirect('/')
+            return redirect('chart')
     else:
         form = ChartForm()
 
@@ -53,7 +53,7 @@ def delPoint(request):
     except Point.DoesNotExist:
         messages.warning(request, 'No point existing')    
     
-    return redirect('home')
+    return redirect('chart')
 
 
 def predict(request):
@@ -81,4 +81,4 @@ def predict(request):
 
     Point.objects.create(x=y_pred.item())
 
-    return redirect('home')
+    return redirect('chart')

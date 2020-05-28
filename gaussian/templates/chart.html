@@ -1,36 +1,15 @@
-{% extends 'base.html' %}
+{% extends 'index.html' %}
 
 {% block title %}
     Cubic interpolation
 {% endblock title %}
 
+{% block header %}
+  
+{% endblock header %}
 
-{% block content %}
-
-	<br>
-
-	<h2> Chart View </h2>
-	{% if messages %}
-
-    {% for message in messages %}
-		
-
-		<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-  			{{ message }}
-  			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-  			  <span aria-hidden="true">&times;</span>
-  			</button>
-		</div>
-
-    {% endfor %}
-
-
-{% endif %}
-
-  <div class="jumbotron">
-
-
-			<p>
+{% block paragraph %}
+  
 <!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
 2
 3
@@ -49,10 +28,16 @@
 
     linearModel.fit(x, y)
 </pre></td></tr></table></div>
+{% endblock paragraph %}
+{% block content %}
+
+	<br>
+
+	<h2> Chart View </h2>
 
 
 
-	<p>
+
 
 			<canvas id="canvas"></canvas>
 
@@ -60,9 +45,7 @@
 				<form method="POST" id="chartForm">{% csrf_token %}
 
 					<div class="input-group">
-
-						{{form.x}}
-					
+						{{form.x}}					
 						<div class="input-group-append" id="button-addon4">
 							<button class="btn btn-outline-secondary" type="submit">Add point</button>
 							<a href="{% url 'predict' %}" type="button" class="btn btn-outline-secondary">Predict (linear)</a>
@@ -73,9 +56,6 @@
 
 				<form>
 		
-					
-
-  </div>
 
 
 
@@ -88,7 +68,6 @@
 
 
 <script>
-
 
 
 		var datapoints = [{% for item in query %} '{{item.x}}', {% endfor %}]

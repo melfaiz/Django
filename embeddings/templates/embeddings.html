@@ -1,0 +1,72 @@
+{% extends 'index.html' %}
+
+{% load static %}
+{% block title %}
+    Word embeddings
+{% endblock title %}
+
+{% block header %}  Word embeddings {% endblock header %}
+{% block paragraph %}  
+
+GloVe is an unsupervised learning algorithm for obtaining vector representations for words. Training is performed on aggregated global word-word co-occurrence statistics from a corpus, and the resulting representations showcase interesting linear substructures of the word vector space.
+
+{% endblock paragraph %}
+
+{% block content %}
+
+
+    <a></a>
+
+
+    <form action="" method="post">
+        {% csrf_token %}
+
+        {% for field in form %}
+            <div class="form-group">
+                <label for="exampleInputEmail1">{{ field.label }}</label>
+                {{ field}}     
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+
+    {% if word %}
+        <h4>Word</h4>
+        <a> {{ word}}</a>
+
+        <h4>Closest words</h4>
+
+        <ul>
+            {% for word in closest_embeddings %}
+                <li>{{ word }}</li>
+            {% endfor %}
+        </ul>
+
+    {% endif %}
+
+    
+    {% if figure %}
+        <img src="{% static 'scatter.png' %}" > </img>
+    {% endif %}
+        
+
+        
+
+    
+    
+
+{% endblock content %}
+
+{% block scripts %}
+
+<script>
+
+
+</script>
+
+
+
+
+{% endblock scripts %}
+
