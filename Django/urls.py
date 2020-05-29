@@ -20,11 +20,13 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from . import views
 
 urlpatterns = [
+
+    path('admin/', admin.site.urls),
     path('chart/', include('gaussian.urls')),
     path('embeddings/', include('embeddings.urls')),
     # path('classifier', include('classifier.urls')),
-    path('admin', admin.site.urls),
-    path('', views.index),
+
+    path('', views.index, name='index'),
 ]
 
 

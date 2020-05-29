@@ -5,38 +5,21 @@
 {% endblock title %}
 
 {% block header %}
-  
+  Gaussian Process Regression
 {% endblock header %}
 
 {% block paragraph %}
   
-<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
-2
-3
-4
-5
-6
-7
-8
-9</pre></td><td><pre style="margin: 0; line-height: 125%">    kernel = C(<span style="color: #0000DD; font-weight: bold">1.0</span>, (<span style="color: #0000DD; font-weight: bold">1e-3</span>, <span style="color: #0000DD; font-weight: bold">1e3</span>)) * RBF(<span style="color: #0000DD; font-weight: bold">10</span>, (<span style="color: #0000DD; font-weight: bold">1e-2</span>, <span style="color: #0000DD; font-weight: bold">1e2</span>))
+The GaussianProcessRegressor implements Gaussian processes (GP) for regression purposes. For this, the prior of the GP needs to be specified. The prior mean is assumed to be constant and zero (for normalize_y=False) or the training data’s mean (for normalize_y=True). The prior’s covariance is specified by passing a kernel object. The hyperparameters of the kernel are optimized during fitting of GaussianProcessRegressor by maximizing the log-marginal-likelihood (LML) based on the passed optimizer.
 
-    gpModel = GaussianProcessRegressor(kernel=kernel, n_restarts_optimizer=<span style="color: #0000DD; font-weight: bold">9</span>)
-
-    gpModel.fit(x, y)
-
-    linearModel = LinearRegression()
-
-    linearModel.fit(x, y)
-</pre></td></tr></table></div>
 {% endblock paragraph %}
+
+{% block learn %}
+<a class="btn btn-primary btn-lg" href="https://scikit-learn.org/stable/modules/gaussian_process.html" role="button">Learn more about GPR in scikit learn &raquo;</a>
+	
+{% endblock learn %}
+
 {% block content %}
-
-	<br>
-
-	<h2> Chart View </h2>
-
-
-
 
 
 			<canvas id="canvas"></canvas>
@@ -140,3 +123,25 @@
 
 {% endblock scripts %}
 
+
+{% block code %}
+
+<!-- HTML generated using hilite.me --><div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><table><tr><td><pre style="margin: 0; line-height: 125%">1
+2
+3
+4
+5
+6
+7
+8
+9</pre></td><td><pre style="margin: 0; line-height: 125%">    kernel = C(<span style="color: #0000DD; font-weight: bold">1.0</span>, (<span style="color: #0000DD; font-weight: bold">1e-3</span>, <span style="color: #0000DD; font-weight: bold">1e3</span>)) * RBF(<span style="color: #0000DD; font-weight: bold">10</span>, (<span style="color: #0000DD; font-weight: bold">1e-2</span>, <span style="color: #0000DD; font-weight: bold">1e2</span>))
+
+    gpModel = GaussianProcessRegressor(kernel=kernel, n_restarts_optimizer=<span style="color: #0000DD; font-weight: bold">9</span>)
+
+    gpModel.fit(x, y)
+
+    linearModel = LinearRegression()
+
+    linearModel.fit(x, y)
+</pre></td></tr></table></div>
+{% endblock code %}
