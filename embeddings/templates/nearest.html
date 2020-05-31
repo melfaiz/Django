@@ -1,0 +1,87 @@
+{% extends 'index.html' %} {% load static %} 
+
+
+
+
+{% block title %} Global Vectors for Word Representation {% endblock title %} 
+
+{% block header %} Global Vectors for Word Representation {% endblock header %} {% block paragraph %} GloVe is an unsupervised learning algorithm for obtaining vector representations
+for words. Training is performed on aggregated global word-word co-occurrence statistics from a corpus, and the resulting representations showcase interesting linear substructures of the word vector space. <br><br> The training objective of GloVe is to
+learn word vectors such that their dot product equals the logarithm of the words' probability of co-occurrence. Owing to the fact that the logarithm of a ratio equals the difference of logarithms, this objective associates (the logarithm of) ratios of
+co-occurrence probabilities with vector differences in the word vector space. Because these ratios can encode some form of meaning, this information gets encoded as vector differences as well. For this reason, the resulting word vectors perform very well
+on word analogy tasks, such as those examined in the word2vec package.{% endblock paragraph %} {% block learn %}
+
+<a class="btn btn-primary btn-lg" href="https://nlp.stanford.edu/projects/glove/" role="button">Learn more about GloVe algoritghm &raquo;</a> {% endblock learn %} {% block content %}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'embeddings' %}">Words embeddings</a></li>
+      <li class="breadcrumb-item active" aria-current="page">Nearest words</li>
+    </ol>
+</nav>
+
+
+<img src="{% static 'analogy_code.png' %}" class="img-fluid"> </img>
+
+
+<br><br>
+{% if messages %} {% for message in messages %}
+
+
+<div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+    {{ message }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+</div>
+
+{% endfor %} {% endif %}
+
+<p>Given a word, this demo shows a list of other words that are similar to it, i.e. nearby in the vector space.</p>
+<form action="" method="post">{% csrf_token %}
+    <div class="input-group mb-3">
+        {{form.word}}
+        <div class="input-group-append">
+        <button class="btn btn-outline-secondary" type="submit">Button</button>
+        </div>
+    </div>
+</form>
+
+{% if closest_embeddings %}
+
+<h2>10 Closest words to {{ word }} in the corpus</h2>
+
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">Word</th>
+            <th scope="col">Euclidean distance to {{ word }} </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for word,distance in closest_embeddings %}
+        <tr>
+            <td>
+                <h4>{{ word }}</h4>
+            </td>
+            <td> <h4>{{ distance }}</h4></td>
+        </tr>
+        {% endfor %}
+
+    </tbody>
+</table>
+{% endif %}
+
+{% endblock content %} {% block scripts %}
+
+<script>
+</script>
+
+
+
+
+{% endblock scripts %}
+
+

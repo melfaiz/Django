@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    {% load static %}
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -32,10 +32,10 @@
 
 </head>
 
-<body>
+<body >
 
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <a class="navbar-brand" href="{% url 'index' %}">Django</a>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" style="min-height: 50px;">
+        <a class="navbar-brand">Word embedding</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -43,31 +43,27 @@
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
+                    <a class="nav-link" href="{% url 'embeddings' %}">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+                    <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pages</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="{% url 'nearest' %}">Nearest words</a>
+                        <a class="dropdown-item" href="{% url 'math' %}">Math with words</a>
+                        <!-- <a class="dropdown-item" href="">VGG16 classification</a> -->
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://github.com/melfaiz/" target="_blank">Github</a>
+                </li>
+
+
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+
         </div>
     </nav>
 
-    <main role="main">
+    <main role="main" style="font-size: 20px;">
 
         <!-- Main jumbotron for a primary marketing message or call to action -->
         <div class="jumbotron">
@@ -79,19 +75,11 @@
         </div>
 
 
-        <div class="container">
+        <div class="container" style="padding-bottom: 150px;">
 
-            {% if messages %} {% for message in messages %}
+ {% block code %} {% endblock code %} 
 
-
-            <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                {{ message }}
-                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-            </div>
-
-            {% endfor %} {% endif %} {% block code %} {% endblock code %} {% block content %} {% endblock content %}
+ {% block content %} {% endblock content %}
 
 
 
@@ -101,6 +89,7 @@
         <!-- /container -->
 
     </main>
+
 
     <!-- JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '%-%1$=i-*ib^(palpykb1m4hkka6roc5z=79*(7a)byjs$ifx#'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['18.224.196.110','localhost']
 
@@ -37,9 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'gaussian',
     'embeddings',
-    # 'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -130,27 +128,3 @@ MEDIA_URL = 'media/'
 
 ################################################################
 
-# import keras
-# import numpy as np
-# from keras import backend as K
-# import tensorflow as tf
-# from tensorflow.python.keras.backend import set_session
-# from keras.applications import vgg16
-
-
-# def get_session():
-#     config = tf.ConfigProto()
-#     config.gpu_options.allow_growth = True
-#     return tf.Session(config=config)
-
-# K.tensorflow_backend.set_session(get_session())
-
-# config = tf.ConfigProto()
-# config.gpu_options.allow_growth = True
-# SESS = tf.Session(config=config)
-# print("model loading")
-# GRAPH1 = tf.get_default_graph()
-
-# set_session(SESS)
-# # Load the VGG model
-# VGG_MODEL = vgg16.VGG16(weights="imagenet")

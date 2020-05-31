@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='embeddings'),
-    path('plot', views.plotWords, name='plot'),
-    path('math', views.mathWords, name='math'),
+    path('nearsetWords', views.nearestWords, name='nearest'),
+    path('mathWithWords', views.mathWithWords, name='math'),
 ]
 
